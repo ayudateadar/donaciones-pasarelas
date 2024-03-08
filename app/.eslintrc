@@ -1,0 +1,66 @@
+{
+  // Configuration for JavaScript files
+  "extends": [
+    "next/core-web-vitals"
+    // Needed to avoid warning in next.js build: 'The Next.js plugin was not detected in your ESLint configuration'
+  ],
+  "rules": {
+    "next/core-web-vitals": 0,
+    "prettier/prettier": 0
+  },
+  "overrides": [
+    // Configuration for TypeScript files
+    {
+      "files": [
+        "**/*.ts",
+        "**/*.tsx"
+      ],
+      "plugins": [
+        "unused-imports",
+        "tailwindcss",
+        "simple-import-sort"
+      ],
+      "extends": [],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "prettier/prettier": 0
+      }
+    },
+    // Configuration for testing
+    {
+      "files": [
+        "**/*.test.ts",
+        "**/*.test.tsx"
+      ],
+      "plugins": [
+        "jest",
+        "jest-formatting",
+        "testing-library",
+        "jest-dom"
+      ],
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest-formatting/recommended",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended"
+      ]
+    },
+    // Configuration for e2e testing (Cypress)
+    {
+      "files": [
+        "cypress/**/*.ts"
+      ],
+      "plugins": [
+        "cypress"
+      ],
+      "extends": [
+        "plugin:cypress/recommended"
+      ],
+      "parserOptions": {
+        "project": "./cypress/tsconfig.json"
+      }
+    }
+  ]
+}
